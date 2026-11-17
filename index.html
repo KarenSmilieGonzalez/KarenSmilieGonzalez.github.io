@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Karen Gonzalez</title>
+<meta name="description" content="Product leader who connects systems, data, and processes so teams can focus where they add the most value.">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+
+<style>
+:root {
+  --bg: #FDFBF7;
+  --bg-alt: #F3EFE8;
+  --fg: #1B1816;
+  --fg-secondary: #6B6560;
+  --accent: #C05A2C;
+  --accent-hover: #A34820;
+  --accent-glow: rgba(192, 90, 44, 0.08);
+  --highlight: #E8D5A3;
+  --border: #DDD8CE;
+  --card-bg: #FFFFFF;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'Space Grotesk', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131210;
+    --bg-alt: #1C1A17;
+    --fg: #EDE9E2;
+    --fg-secondary: #9A9490;
+    --accent: #E0784A;
+    --accent-hover: #EE8E62;
+    --accent-glow: rgba(224, 120, 74, 0.1);
+    --highlight: #4A3F28;
+    --border: #2E2A25;
+    --card-bg: #1E1C19;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #131210;
+  --bg-alt: #1C1A17;
+  --fg: #EDE9E2;
+  --fg-secondary: #9A9490;
+  --accent: #E0784A;
+  --accent-hover: #EE8E62;
+  --accent-glow: rgba(224, 120, 74, 0.1);
+  --highlight: #4A3F28;
+  --border: #2E2A25;
+  --card-bg: #1E1C19;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; }
+
+.container {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.hero {
+  padding: 5rem 0 3.5rem;
+  position: relative;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 1.25rem;
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 .accent-dot { color: var(--accent); }
+
+.hero .tagline {
+  font-size: 1.2rem;
+  color: var(--fg-secondary);
+  margin: 0 0 2rem;
+  max-width: 560px;
+  line-height: 1.5;
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.hero-links a {
+  font-family: var(--font-mono);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  transition: all 0.2s ease;
+}
+
+.hero-links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.hero-links a.primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.hero-links a.primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--border), transparent);
+}
+
+section { padding: 3.5rem 0; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.5rem;
+}
+
+section h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.about-content { display: grid; gap: 1.25rem; }
+
+.about-content p {
+  color: var(--fg-secondary);
+  max-width: 620px;
+  margin: 0;
+}
+
+.highlight-quote {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--fg);
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--accent);
+  margin: 0.5rem 0;
+}
+
+.project-grid { display: grid; gap: 1rem; }
+
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.project-card:hover::before { opacity: 1; }
+
+.project-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-card .tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-glow);
+  padding: 0.25rem 0.6rem;
+  border-radius: 100px;
+}
+
+.project-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-card p {
+  color: var(--fg-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.project-screenshot {
+  margin-top: 1rem;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.project-screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.phone-screens {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.phone-frame {
+  flex: 0 0 calc(33.333% - 0.5rem);
+  min-width: 140px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: var(--card-bg);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.phone-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.phone-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.phone-frame .screen-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-secondary);
+  text-align: center;
+  padding: 0.4rem 0;
+  background: var(--bg-alt);
+}
+
+.writing-list { display: grid; gap: 0; }
+
+.writing-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.writing-item:first-child { border-top: 1px solid var(--border); }
+
+.writing-item a {
+  font-family: var(--font-display);
+  color: var(--fg);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.15s;
+}
+
+.writing-item a:hover { color: var(--accent); }
+
+.writing-item .date {
+  font-family: var(--font-mono);
+  color: var(--fg-secondary);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.now-content {
+  background: var(--bg-alt);
+  border-radius: 8px;
+  padding: 1.75rem;
+}
+
+.now-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.now-content li {
+  color: var(--fg-secondary);
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.now-content li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+footer {
+  padding: 2.5rem 0 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+footer p {
+  font-family: var(--font-mono);
+  color: var(--fg-secondary);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+footer a {
+  color: var(--fg-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+footer a:hover { color: var(--accent); }
+
+@media (max-width: 480px) {
+  .hero { padding: 3rem 0 2.5rem; }
+  section { padding: 2.5rem 0; }
+  .project-card { padding: 1.25rem; }
+  .now-content { padding: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="hero">
+    <p class="hero-eyebrow">Product Leader</p>
+    <h1>Karen Gonzalez<span class="accent-dot">.</span></h1>
+    <p class="tagline">I make people's jobs easier. I connect systems, data, and processes so teams can focus where they add the most value.</p>
+    <div class="hero-links">
+      <a class="primary" href="https://www.linkedin.com/in/karengonzalezmba/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/smiliemama-max" target="_blank">GitHub</a>
+      <a href="mailto:smiliemama@gmail.com">Get in touch</a>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <section>
+    <p class="section-label">About</p>
+    <div class="about-content">
+      <p>My best work often starts the same way. Someone shows me the messy, manual version of their job. The workaround they've been living with for months or years. I keep digging until I understand what's really going on, pull the data apart, and work with design and technical partners to turn that into something people will actually use.</p>
+      <p class="highlight-quote">The part I love is when a process that took hours gets down to minutes, and you can see the relief.</p>
+      <p>I spent most of my career doing this at T-Mobile, where I built and led T-Builder in store development. Now I'm exploring what's next and building with AI tools along the way. I write SQL, I partner with designers and engineers, and I'm learning to ship things myself using Claude and other AI development tools.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <p class="section-label">Projects</p>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="tag">Proptech</span>
+        </div>
+        <h3>Schedule Me</h3>
+        <p>A scheduling board for move-in and move-out visits on single-family rentals. A requestor posts an address, date, time window, and checklist. A worker whose skills and availability fit can take the visit. The board tracks jobs across Not Started, In Progress, Completed, and Canceled. Built as a browser prototype with plain HTML, CSS, and JavaScript.</p>
+        <div class="phone-screens">
+          <div class="phone-frame">
+            <img src="images/schedule-me-requestor.jpg" alt="Requestor view showing 3 visit requests waiting to be matched with workers" loading="lazy">
+            <div class="screen-label">Requestor</div>
+          </div>
+          <div class="phone-frame">
+            <img src="images/schedule-me-worker.jpg" alt="Worker view showing available visits matched to skills, with a suggested bundle of two nearby jobs" loading="lazy">
+            <div class="screen-label">Worker</div>
+          </div>
+          <div class="phone-frame">
+            <img src="images/schedule-me-qa.jpg" alt="QA view showing 2 reviews waiting in the queue for quality check" loading="lazy">
+            <div class="screen-label">QA</div>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="tag">Home</span>
+        </div>
+        <h3>Homeowner Maintenance</h3>
+        <p>Tracks recurring house work that usually lives in someone's head until something fails: HVAC filters, detectors, gutters, and similar tasks, each with a frequency and due date. The dashboard groups everything as overdue, due soon, or upcoming. You can export reminders to your calendar, share with another person, and assign tasks to yourself or each other. Defaults come from the EPA, HUD, and university extension checklists. Built with Next.js, TypeScript, React, and Supabase.</p>
+        <div class="project-screenshot">
+          <img src="images/homeowner-dashboard.jpg" alt="Homeowner Maintenance dashboard showing task summary cards for overdue, due soon, and upcoming tasks, with a sortable task list below" loading="lazy">
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="tag">Product Feedback</span>
+        </div>
+        <h3>Advising Former Colleagues</h3>
+        <p>Two former coworkers building their own products have asked me to contribute product thinking and QA. One is ToDoosy, a task management app available in the app marketplace. The other is still in development. I review flows, test features, and give structured feedback on what's working and what needs to change.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="tag">AI + Job Search</span>
+        </div>
+        <h3>Interview Coaching Framework</h3>
+        <p>Built a system using Claude to prepare for interviews. Includes frameworks for evaluating company fit, tailoring how I talk about my experience, and thinking through what I want from my next role. Also includes a fit scorecard and structured one-pagers for every conversation.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="tag">This Site</span>
+        </div>
+        <h3>Personal Portfolio</h3>
+        <p>A personal portfolio built with Claude and hosted on GitHub Pages. The site you're looking at right now. Designed and shipped as a portfolio piece itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <p class="section-label">Writing</p>
+    <div class="writing-list">
+      <div class="writing-item">
+        <a href="https://www.linkedin.com/pulse/5-things-i-learned-product-camp-atlanta-karen-gonzalez" target="_blank">5 Things I Learned at Product Camp Atlanta</a>
+        <span class="date">Nov 2026</span>
+      </div>
+      <div class="writing-item">
+        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7491139587793276929/" target="_blank">Building an Asset Data System Across 2,800+ Locations</a>
+        <span class="date">Aug 2026</span>
+      </div>
+      <div class="writing-item">
+        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7445121910776094721/" target="_blank">Empowering Field Teams Through Better Tools</a>
+        <span class="date">Apr 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <p class="section-label">Now</p>
+    <div class="now-content">
+      <ul>
+        <li>Looking for my next product role, remote or Atlanta/Marietta hybrid</li>
+        <li>Building with AI tools and documenting what I learn</li>
+        <li>Writing about product, communication, and the job search</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built with Claude &middot; Hosted on GitHub Pages</p>
+    <p>&copy; 2026 Karen Gonzalez</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
