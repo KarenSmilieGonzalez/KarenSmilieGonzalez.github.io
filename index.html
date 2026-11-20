@@ -402,11 +402,64 @@ footer a {
 
 footer a:hover { color: var(--accent); }
 
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  padding: 0 max(16px, env(safe-area-inset-left, 0px));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+}
+
+nav ul {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 740px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+nav a {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--fg-secondary);
+  text-decoration: none;
+  padding: 0.65rem 0.75rem;
+  display: block;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+nav a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+html { scroll-behavior: smooth; }
+
+section[id] { scroll-margin-top: 3rem; }
+
 @media (max-width: 480px) {
   .hero { padding: 3rem 0 2.5rem; }
   section { padding: 2.5rem 0; }
   .project-card { padding: 1.25rem; }
   .now-content { padding: 1.25rem; }
+  nav a { font-size: 0.72rem; padding: 0.55rem 0.6rem; }
 }
 </style>
 </head>
@@ -425,9 +478,18 @@ footer a:hover { color: var(--accent); }
     </div>
   </header>
 
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#now">Now</a></li>
+    </ul>
+  </nav>
+
   <div class="divider"></div>
 
-  <section>
+  <section id="about">
     <p class="section-label">About</p>
     <div class="about-content">
       <p>My best work often starts the same way. Someone shows me the messy, manual version of their job. The workaround they've been living with for months or years. I keep digging until I understand what's really going on, pull the data apart, and work with design and technical partners to turn that into something people will actually use.</p>
@@ -438,7 +500,7 @@ footer a:hover { color: var(--accent); }
 
   <div class="divider"></div>
 
-  <section>
+  <section id="projects">
     <p class="section-label">Projects</p>
     <div class="project-grid">
       <div class="project-card">
@@ -498,7 +560,7 @@ footer a:hover { color: var(--accent); }
 
   <div class="divider"></div>
 
-  <section>
+  <section id="writing">
     <p class="section-label">Writing</p>
     <div class="writing-list">
       <div class="writing-item">
@@ -518,7 +580,7 @@ footer a:hover { color: var(--accent); }
 
   <div class="divider"></div>
 
-  <section>
+  <section id="now">
     <p class="section-label">Now</p>
     <div class="now-content">
       <ul>
@@ -535,6 +597,23 @@ footer a:hover { color: var(--accent); }
   </footer>
 
 </div>
+
+<script>
+(function() {
+  var links = document.querySelectorAll('nav a');
+  var sections = document.querySelectorAll('section[id]');
+  function update() {
+    var y = window.scrollY + 80;
+    var current = '';
+    sections.forEach(function(s) { if (s.offsetTop <= y) current = s.id; });
+    links.forEach(function(a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', update, {passive: true});
+  update();
+})();
+</script>
 
 </body>
 </html>
