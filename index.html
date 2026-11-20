@@ -604,16 +604,13 @@ section[id] { scroll-margin-top: 3rem; }
   var links = document.querySelectorAll('nav a');
   var sections = document.querySelectorAll('section[id]');
   function update() {
-    var current = '';
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 40) {
+    var current = sections[0].id;
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
       current = sections[sections.length - 1].id;
     } else {
-      var best = Infinity;
-      sections.forEach(function(s) {
-        var top = s.getBoundingClientRect().top;
-        if (top <= 100 && Math.abs(top) < Math.abs(best)) { best = top; current = s.id; }
-      });
-      if (!current) current = sections[0].id;
+      for (var i = sections.length - 1; i >= 0; i--) {
+        if (sections[i].getBoundingClientRect().top <= 100) { current = sections[i].id; break; }
+      }
     }
     links.forEach(function(a) {
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
