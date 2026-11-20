@@ -603,17 +603,33 @@ section[id] { scroll-margin-top: 3rem; }
 (function() {
   var links = document.querySelectorAll('nav a');
   var sections = document.querySelectorAll('section[id]');
+  var clickedId = null, clickTimer = null;
+
+  links.forEach(function(a) {
+    a.addEventListener('click', function() {
+      clickedId = a.getAttribute('href').slice(1);
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(function() { clickedId = null; }, 1200);
+      setActive(clickedId);
+    });
+  });
+
+  function setActive(id) {
+    links.forEach(function(a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
   function update() {
+    if (clickedId) return;
     var current = sections[0].id;
-    var atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
-    var threshold = atBottom ? window.innerHeight * 0.65 : window.innerHeight * 0.4;
+    var threshold = window.innerHeight * 0.4;
     for (var i = sections.length - 1; i >= 0; i--) {
       if (sections[i].getBoundingClientRect().top <= threshold) { current = sections[i].id; break; }
     }
-    links.forEach(function(a) {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
+    setActive(current);
   }
+
   window.addEventListener('scroll', update, {passive: true});
   update();
 })();
