@@ -605,7 +605,8 @@ section[id] { scroll-margin-top: 3rem; }
   var sections = document.querySelectorAll('section[id]');
   function update() {
     var current = sections[0].id;
-    var threshold = window.innerHeight * 0.4;
+    var atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+    var threshold = atBottom ? window.innerHeight * 0.65 : window.innerHeight * 0.4;
     for (var i = sections.length - 1; i >= 0; i--) {
       if (sections[i].getBoundingClientRect().top <= threshold) { current = sections[i].id; break; }
     }
